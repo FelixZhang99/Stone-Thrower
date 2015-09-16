@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bfb;&#x8def;/GameScene.swift"
+            timestampString = "464072557.277868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "611"
+            endingLineNumber = "611"
+            landmarkName = "GameScene"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bfb;&#x8def;/GameScene.swift"
+            timestampString = "464072228.471801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "GameScene"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x5bfb;&#x8def;.GameScene.blockernumber.getter : Swift.Int"
+                  moduleName = "&#x5bfb;&#x8def;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangfutian/Desktop/%E5%AF%BB%E8%B7%AF/%E5%AF%BB%E8%B7%AF/GameScene.swift"
+                  timestampString = "463032722.655507"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x5bfb;&#x8def;.GameScene.blockernumber.setter : Swift.Int"
+                  moduleName = "&#x5bfb;&#x8def;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangfutian/Desktop/%E5%AF%BB%E8%B7%AF/%E5%AF%BB%E8%B7%AF/GameScene.swift"
+                  timestampString = "463032722.655734"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x5bfb;&#x8def;.GameScene.blockernumber.materializeForSet : Swift.Int"
+                  moduleName = "&#x5bfb;&#x8def;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangfutian/Desktop/%E5%AF%BB%E8%B7%AF/%E5%AF%BB%E8%B7%AF/GameScene.swift"
+                  timestampString = "463032722.655954"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x5bfb;&#x8def;.GameScene.init (&#x5bfb;&#x8def;.GameScene.Type)(size : C.CGSize) -&gt; &#x5bfb;&#x8def;.GameScene"
+                  moduleName = "&#x5bfb;&#x8def;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangfutian/Desktop/%E5%AF%BB%E8%B7%AF/%E5%AF%BB%E8%B7%AF/GameScene.swift"
+                  timestampString = "463032722.65609"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x5bfb;&#x8def;.GameScene.init (&#x5bfb;&#x8def;.GameScene.Type)() -&gt; &#x5bfb;&#x8def;.GameScene"
+                  moduleName = "&#x5bfb;&#x8def;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangfutian/Desktop/%E5%AF%BB%E8%B7%AF/%E5%AF%BB%E8%B7%AF/GameScene.swift"
+                  timestampString = "463032722.656216"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x5bfb;&#x8def;.GameScene.init (&#x5bfb;&#x8def;.GameScene.Type)(coder : ObjectiveC.NSCoder) -&gt; Swift.Optional&lt;&#x5bfb;&#x8def;.GameScene&gt;"
+                  moduleName = "&#x5bfb;&#x8def;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangfutian/Desktop/%E5%AF%BB%E8%B7%AF/%E5%AF%BB%E8%B7%AF/GameScene.swift"
+                  timestampString = "463032722.656369"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bfb;&#x8def;/GameScene.swift"
+            timestampString = "464072557.277868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "628"
+            endingLineNumber = "628"
+            landmarkName = "update(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bfb;&#x8def;/GameScene.swift"
+            timestampString = "464072557.277868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "didBeginContact(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bfb;&#x8def;/GameScene.swift"
+            timestampString = "464072557.277868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
+            landmarkName = "touchesMoved(_:withEvent:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
