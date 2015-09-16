@@ -19,8 +19,8 @@
 		B457B9971B8C3DAA00898802 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B457B9961B8C3DAA00898802 /* Images.xcassets */; };
 		B457B99A1B8C3DAA00898802 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B457B9981B8C3DAA00898802 /* LaunchScreen.xib */; };
 		B457B9A61B8C3DAA00898802 /* __Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B457B9A51B8C3DAA00898802 /* __Tests.swift */; };
-		B46F67201BA41DC500FF8BE3 /* life.tif in Resources */ = {isa = PBXBuildFile; fileRef = B46F671F1BA41DC400FF8BE3 /* life.tif */; };
 		B4B628F91B8C932A00885EEB /* barrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B628F81B8C932A00885EEB /* barrier.swift */; };
+		B4C614EF1BA957E300486214 /* life.tif in Resources */ = {isa = PBXBuildFile; fileRef = B4C614EE1BA957E300486214 /* life.tif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +50,8 @@
 		B457B99F1B8C3DAA00898802 /* 寻路Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "寻路Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B457B9A41B8C3DAA00898802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B457B9A51B8C3DAA00898802 /* __Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = __Tests.swift; sourceTree = "<group>"; };
-		B46F671F1BA41DC400FF8BE3 /* life.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = life.tif; path = "../../../Documents/别碰我/No-Touch/No-Touch/别碰我/Images.xcassets/life.tif"; sourceTree = "<group>"; };
 		B4B628F81B8C932A00885EEB /* barrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = barrier.swift; sourceTree = "<group>"; };
+		B4C614EE1BA957E300486214 /* life.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = life.tif; path = "../../../../Documents/别碰我/No-Touch/No-Touch/别碰我/Images.xcassets/life.tif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +113,7 @@
 		B457B9891B8C3DAA00898802 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B46F671F1BA41DC400FF8BE3 /* life.tif */,
+				B4C614EE1BA957E300486214 /* life.tif */,
 				B457B98A1B8C3DAA00898802 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -217,8 +217,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B457B99A1B8C3DAA00898802 /* LaunchScreen.xib in Resources */,
-				B46F67201BA41DC500FF8BE3 /* life.tif in Resources */,
 				B457B9971B8C3DAA00898802 /* Images.xcassets in Resources */,
+				B4C614EF1BA957E300486214 /* life.tif in Resources */,
 				B457B98E1B8C3DAA00898802 /* GameScene.sks in Resources */,
 				B457B9951B8C3DAA00898802 /* Main.storyboard in Resources */,
 			);
