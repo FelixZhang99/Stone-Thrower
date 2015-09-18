@@ -13,6 +13,8 @@ var width:CGFloat=0
 var height:CGFloat=0
 var nextlevel=false
 var level=1
+var go=false
+var stop=false
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
@@ -43,20 +45,7 @@ class GameViewController: UIViewController {
     @IBAction func dismiss(){
     
         
-        if again==true{
-            again=false
-            
-            restlife = 3
-            
-            die = false
-            
-            level = 0
-            
-        }
-        
-        level++
-        
-        self.viewDidLoad()
+               self.viewDidLoad()
 
         
     }
@@ -65,17 +54,25 @@ class GameViewController: UIViewController {
     
     var levellabel = UILabel()
     
+    var gobutton = UIButton()
     
+    var pausebut = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        load()
+        
         width=self.view.bounds.width
         height=self.view.bounds.height
         
+        go=false
         
         setlife()
         
+        buttonhid=false
+        
+        go=false
        
         nextlevel=false
         
@@ -102,11 +99,121 @@ class GameViewController: UIViewController {
             
         }
         
+        gobutton.frame = CGRectMake(width - 60, height - 60, 40, 40)
+        gobutton.setImage(UIImage(named: "buttom.tif"), forState: .Normal)
+        gobutton.addTarget(self, action: Selector("gopeople"), forControlEvents: UIControlEvents.TouchUpInside)
+        gobutton.alpha = 1
+        self.view.addSubview(gobutton)
+        
         button.alpha = 0
         button.center = self.view.center
         button.enabled = false
         button.setTitle("next", forState: .Normal)
+        
+        pausebut.frame = CGRectMake(width - 60, 40 , 45, 30)
+        pausebut.setImage(UIImage(named: "stop.tif"), forState: .Normal)
+        pausebut.addTarget(self, action: Selector("suspend"), forControlEvents: UIControlEvents.TouchUpInside)
+        pausebut.alpha = 1
+        self.view.addSubview(pausebut)
+        
     }
+    
+    func gopeople(){
+        go=true
+        
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.gobutton.alpha = 0
+                }) { (finished:Bool) -> Void in
+                    self.gobutton.removeFromSuperview()
+            }
+        
+        
+    }
+    
+    
+    
+    var continuegame:UIButton!
+    var restart:UIButton!
+    var help:UIButton!
+    
+    
+    
+    func suspend(){
+        
+        stop = true
+        
+        gobutton.enabled = false
+        
+        pausebut.enabled = false
+        
+        continuegame = mybutton("继续游戏", y: height/2-45)
+        
+        restart = mybutton("重新开始", y: height/2)
+        
+        help = mybutton("帮助", y: height/2+45)
+        
+        continuegame.addTarget(self, action: Selector("cg"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        restart.addTarget(self, action: Selector("replay"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        help.addTarget(self, action: Selector("gohelp"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+       
+    }
+    
+    
+    func mybutton(txt:String,y:CGFloat)-> UIButton{
+        var button : UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        
+        button.frame = CGRectMake(width, y, 120, 40)
+        
+        button.setTitle(txt, forState: .Normal)
+        
+        button.backgroundColor = UIColor.brownColor()
+        
+        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        button.titleLabel?.font = UIFont.systemFontOfSize(20, weight: 4)
+        
+        button.layer.cornerRadius = 10
+        
+        self.view.addSubview(button)
+        
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            button.transform = CGAffineTransformMakeTranslation( -(width/2)-60 , 0)
+        })
+        return button
+    }
+    
+    func cg(){
+        
+        continuegame.removeFromSuperview()
+        
+        restart.removeFromSuperview()
+        
+        help.removeFromSuperview()
+        
+        stop=false
+     
+        gobutton.enabled = true
+        
+        pausebut.enabled = true
+    }
+    
+    func replay(){
+        level = 1
+        
+        restlife = 3
+        
+        restrock = 0
+        
+        self.viewDidLoad()
+        
+        cg()
+        
+        stop = false
+    }
+    
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         if nextlevel{
@@ -126,8 +233,31 @@ class GameViewController: UIViewController {
                 self.button.enabled = true
                 }, completion: nil)
             
+            if self.again==true{
+                self.again=false
+                
+                restlife = 3
+                
+                die = false
+                
+                level = 0
+                
+                
+            }
+            restrock += 3
+            level++
+            
+            save()
             
             
+            
+        }
+        if buttonhid{
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.gobutton.alpha = 0
+                }) { (finished:Bool) -> Void in
+                    self.gobutton.removeFromSuperview()
+            }
         }
         
     }
@@ -178,4 +308,10 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+
+    
+
+
+
+
 }

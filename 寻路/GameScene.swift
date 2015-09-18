@@ -11,7 +11,8 @@ import SpriteKit
 var die=false
 var restlife=3
 var rockarray:[Rock] = []
-var restrock = 0
+var restrock = 3
+var buttonhid = false
 
 enum Throw:Int{
     case rock=1
@@ -31,6 +32,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     var pointarray:[SKShapeNode] = []
     var rocklabel = SKLabelNode()
     var gobuttom = SKSpriteNode()
+    
     
     var throw = Throw.rock
     
@@ -62,16 +64,17 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         self.addChild(finish)
         
-        //showpoint()
+        
+        buttonhid=false
+        
+               
         
         
-        
-       
     }
     
     func setbackground(){
         
-        restrock += 3
+       
         
         rockarray = []
         
@@ -83,7 +86,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVectorMake(0, 0)
         
-        rocklabel = SKLabelNode(fontNamed:"MarkerFelt-Thin")
+        rocklabel = SKLabelNode(fontNamed:"Chalkduster")
         
         rocklabel.text = "rock*\(restrock)"
         
@@ -405,7 +408,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
 
         lastlocation = beginlocation
         
-        if !nextlevel{
+        if !nextlevel && !stop{
         
             if throw == Throw.rock{
                 if !disrock{
@@ -422,6 +425,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                 
             }
         }
+        
+        if restrock==1{
+            buttonhid=true
+        }
+        
     }
     
     override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -434,7 +442,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                 presentlocation = touch.locationInNode(self)
             }
 
-        if throw == Throw.rock{
+        if throw == Throw.rock && !stop{
             
             if !distouch{
             var dirX = CGFloat(beginlocation.x-presentlocation.x)
@@ -502,7 +510,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         }
         
         
-        if !nextlevel{
+        if !nextlevel && !stop{
         if peopleable{
             
             var x = CGFloat(presentlocation.x-lastlocation.x)
@@ -536,7 +544,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             
         }
         
-        if throw == Throw.rock{
+        if throw == Throw.rock && !stop{
             if !distouch{
                 if !peopleable{
                 var dirX=Double(beginlocation.x - endlocation.x)
@@ -564,6 +572,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                     }else{
      
                         var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("newpeople"), userInfo: nil, repeats: false)
+                        
+                    
+                        
    
                     }
                     
@@ -581,17 +592,14 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             }
           
 
-            
         }
-        
-        
         
         for line in pointarray{
             line.removeFromParent()
             line.removeAllActions()
-            
         }
         pointarray=[]
+        
         
     }
     
@@ -613,9 +621,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         people.setpeople()
         peopleable=true
-        addChild(self.people)
+        self.addChild(people)
         
         throw = Throw.people
+        
+        buttonhid = true
         
     }
     
@@ -655,33 +665,22 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         people.physicsBody?.velocity = CGVectorMake(0, 0)
         
-    }
-    
-    
-    
-    func showpoint(){
-        
-        for rock in rockarray{
+        if go{
             
-            if rock.status == .move && rock.lineneed==true {
-                
-                let verX = rock.physicsBody?.velocity.dx
-                let verY = rock.physicsBody?.velocity.dy
-                
-                let ver = sqrt(verX!*verX!+verY!*verY!)
-                
-                if ver>200{
-                    let rockpoint = rock.createpoint()
-                    
-                    self.addChild(rockpoint)
-                }
-                
-            }
+            println(rockarray.count)
+
+            rockarray.last?.removeFromParent()
+                        
+            
+            newpeople()
+            go=false
         }
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("showpoint"), userInfo: nil, repeats: false)
         
     }
+    
+    
+    
     
 }
 

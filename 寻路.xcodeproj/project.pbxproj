@@ -21,6 +21,9 @@
 		B457B9A61B8C3DAA00898802 /* __Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B457B9A51B8C3DAA00898802 /* __Tests.swift */; };
 		B4B628F91B8C932A00885EEB /* barrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B628F81B8C932A00885EEB /* barrier.swift */; };
 		B4C614EF1BA957E300486214 /* life.tif in Resources */ = {isa = PBXBuildFile; fileRef = B4C614EE1BA957E300486214 /* life.tif */; };
+		B4C614F11BA9663600486214 /* buttom.tif in Resources */ = {isa = PBXBuildFile; fileRef = B4C614F01BA9663600486214 /* buttom.tif */; };
+		B4C614F31BABB47700486214 /* save.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C614F21BABB47700486214 /* save.swift */; };
+		B4C614F51BABED3A00486214 /* stop.tif in Resources */ = {isa = PBXBuildFile; fileRef = B4C614F41BABED3A00486214 /* stop.tif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		B457B9A51B8C3DAA00898802 /* __Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = __Tests.swift; sourceTree = "<group>"; };
 		B4B628F81B8C932A00885EEB /* barrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = barrier.swift; sourceTree = "<group>"; };
 		B4C614EE1BA957E300486214 /* life.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = life.tif; path = "../../../../Documents/别碰我/No-Touch/No-Touch/别碰我/Images.xcassets/life.tif"; sourceTree = "<group>"; };
+		B4C614F01BA9663600486214 /* buttom.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = buttom.tif; path = "../../../../Documents/别碰我/No-Touch/No-Touch/别碰我/Images.xcassets/buttom.tif"; sourceTree = "<group>"; };
+		B4C614F21BABB47700486214 /* save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = save.swift; sourceTree = "<group>"; };
+		B4C614F41BABED3A00486214 /* stop.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = stop.tif; path = "../../../../Documents/别碰我/No-Touch/No-Touch/别碰我/Images.xcassets/stop.tif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 				B446B4A61B99456900C09FA8 /* finish.swift */,
 				B446B4A81B994EF500C09FA8 /* people.swift */,
 				B446B4AA1B99906300C09FA8 /* transition.swift */,
+				B4C614F21BABB47700486214 /* save.swift */,
 				B457B9911B8C3DAA00898802 /* GameViewController.swift */,
 				B457B9931B8C3DAA00898802 /* Main.storyboard */,
 				B457B9961B8C3DAA00898802 /* Images.xcassets */,
@@ -113,6 +120,8 @@
 		B457B9891B8C3DAA00898802 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4C614F41BABED3A00486214 /* stop.tif */,
+				B4C614F01BA9663600486214 /* buttom.tif */,
 				B4C614EE1BA957E300486214 /* life.tif */,
 				B457B98A1B8C3DAA00898802 /* Info.plist */,
 			);
@@ -216,7 +225,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4C614F11BA9663600486214 /* buttom.tif in Resources */,
 				B457B99A1B8C3DAA00898802 /* LaunchScreen.xib in Resources */,
+				B4C614F51BABED3A00486214 /* stop.tif in Resources */,
 				B457B9971B8C3DAA00898802 /* Images.xcassets in Resources */,
 				B4C614EF1BA957E300486214 /* life.tif in Resources */,
 				B457B98E1B8C3DAA00898802 /* GameScene.sks in Resources */,
@@ -241,6 +252,7 @@
 				B446B4A91B994EF500C09FA8 /* people.swift in Sources */,
 				B446B4A71B99456900C09FA8 /* finish.swift in Sources */,
 				B457B9901B8C3DAA00898802 /* GameScene.swift in Sources */,
+				B4C614F31BABB47700486214 /* save.swift in Sources */,
 				B446B4731B959B3700C09FA8 /* rock.swift in Sources */,
 				B457B9921B8C3DAA00898802 /* GameViewController.swift in Sources */,
 				B457B98C1B8C3DAA00898802 /* AppDelegate.swift in Sources */,
