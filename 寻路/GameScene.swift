@@ -34,7 +34,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     var gobuttom = SKSpriteNode()
     
     
-    var throw = Throw.rock
+    var `throw` = Throw.rock
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -48,7 +48,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         setbottom()
         setright()
         
-        var rock = Rock()
+        let rock = Rock()
         
         rock.setrock()
         
@@ -56,7 +56,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         rock.inarray = 0
         
-        throw = Throw.rock
+        `throw` = Throw.rock
         
         self.addChild(rock)
         
@@ -106,7 +106,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         var sumlength:CGFloat = 0
         var isblock=true
         while sumlength < width{
-            var randomlength = CGFloat(arc4random()) % (width / 5) + 10
+            let randomlength = CGFloat(arc4random()) % (width / 5) + 10
             
             if isblock{
                 let topedge = SKShapeNode()
@@ -117,7 +117,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                 topedge.fillColor = SKColor.grayColor()
                 
                 topedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(randomlength, 10), center: CGPointMake(0, 0))
-                println(topedge.physicsBody)
+                print(topedge.physicsBody)
                 topedge.physicsBody?.restitution=1
                 topedge.physicsBody?.usesPreciseCollisionDetection = true
                 topedge.physicsBody?.dynamic = false
@@ -180,7 +180,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         var sumlength:CGFloat = 0
         var isblock=true
         while sumlength < width{
-            var randomlength = CGFloat(arc4random()) % (width / 5) + 10
+            let randomlength = CGFloat(arc4random()) % (width / 5) + 10
             
             if isblock{
                 let buttomedge = SKShapeNode()
@@ -263,33 +263,33 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         while i < blockernumber{
             i++
             
-            var block = blocker()
+            let block = blocker()
             
             block.setbarrier()
             
             blockerexist = true
             
             for other in barrierarray{
-                var dirX=Double(block.x - other.x)
-                var dirY=Double(block.y - other.y)
+                let dirX=Double(block.x - other.x)
+                let dirY=Double(block.y - other.y)
                 
-                var dir=sqrt(dirX*dirX+dirY*dirY)
+                let dir=sqrt(dirX*dirX+dirY*dirY)
                 if dir<Double(block.ballsize/2+other.ballsize/2){
                     blockerexist=false
                 }
             }
             
-            var dirXfromrock = Double(block.x - width/2)
-            var dirYfromrock = Double(block.y - height/10)
-            var dirfromrock = sqrt(dirXfromrock * dirXfromrock + dirYfromrock * dirYfromrock)
+            let dirXfromrock = Double(block.x - width/2)
+            let dirYfromrock = Double(block.y - height/10)
+            let dirfromrock = sqrt(dirXfromrock * dirXfromrock + dirYfromrock * dirYfromrock)
             
             if dirfromrock < Double(block.ballsize) + 20 {
                 blockerexist=false
             }
             
-            var dirXfromfin = Double(block.x - width/2)
-            var dirYfromfin = Double(block.y - 9*height/10)
-            var dirfromfin = sqrt(dirXfromfin * dirXfromfin + dirYfromfin * dirYfromfin)
+            let dirXfromfin = Double(block.x - width/2)
+            let dirYfromfin = Double(block.y - 9*height/10)
+            let dirfromfin = sqrt(dirXfromfin * dirXfromfin + dirYfromfin * dirYfromfin)
             
             if dirfromfin < Double(block.ballsize){
                 blockerexist=false
@@ -309,7 +309,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     
     func didBeginContact(contact: SKPhysicsContact) {
         if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.block|BitMaskType.rock){
-            println("crash")
+            print("crash")
             
             
             let a = contact.bodyA.node
@@ -323,7 +323,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             let b = contact.bodyB.node
             
             //disline(b!.position)
-            println("crashwall")
+            print("crashwall")
         }
         if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.block)||(contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.edge){
             
@@ -339,7 +339,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             
             restart()
             
-            println("badcrash")
+            print("badcrash")
         }
         
         if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.block){
@@ -396,11 +396,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     var disrock=false
     var distouch=false
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
         
-        for touch in (touches as! Set<UITouch>){
+        for touch in (touches ){
         
             beginlocation = touch.locationInNode(self)
             
@@ -410,7 +410,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         if !nextlevel && !stop{
         
-            if throw == Throw.rock{
+            if `throw` == Throw.rock{
                 if !disrock{
                     rockarray.last!.position = CGPointMake(width/2, height/10)
                     rockarray.last!.physicsBody?.velocity = CGVectorMake(0, 0)
@@ -432,17 +432,17 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         var presentlocation:CGPoint = CGPoint(x: 0,y: 0)
         
         
         
-        for touch in (touches as! Set<UITouch>){
+        for touch in (touches ){
                 presentlocation = touch.locationInNode(self)
             }
 
-        if throw == Throw.rock && !stop{
+        if `throw` == Throw.rock && !stop{
             
             if !distouch{
             var dirX = CGFloat(beginlocation.x-presentlocation.x)
@@ -451,7 +451,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             dirX /= 4
             dirY /= 4
             
-                var dis = sqrt(dirX*dirX+dirY*dirY)
+                let dis = sqrt(dirX*dirX+dirY*dirY)
                 
                 if dis>20{
                     dirX *= 20/dis
@@ -467,8 +467,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                     for i in 1...15 {
                     
                      
-                    var x = width/2 - dirX + CGFloat(i)*dirX*1.8
-                     var y = height/10 - dirY + CGFloat(i)*dirY*1.8
+                    let x = width/2 - dirX + CGFloat(i)*dirX*1.8
+                     let y = height/10 - dirY + CGFloat(i)*dirY*1.8
                     
                         let line = SKShapeNode()
                         
@@ -492,8 +492,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                     
                     for i in 1...15{
                         
-                        var x = width/2 - dirX + CGFloat(i)*dirX*1.8
-                        var y = height/10 - dirY + CGFloat(i)*dirY*1.8
+                        let x = width/2 - dirX + CGFloat(i)*dirX*1.8
+                        let y = height/10 - dirY + CGFloat(i)*dirY*1.8
                         
                         
                         pointarray[i-1].runAction(SKAction.moveTo(CGPointMake(x, y), duration: 0))
@@ -513,18 +513,18 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         if !nextlevel && !stop{
         if peopleable{
             
-            var x = CGFloat(presentlocation.x-lastlocation.x)
-            var y = CGFloat(presentlocation.y-lastlocation.y)
+            let x = CGFloat(presentlocation.x-lastlocation.x)
+            let y = CGFloat(presentlocation.y-lastlocation.y)
             
-            println([x,y])
+            print([x,y])
             
                         
             people.runAction(SKAction.moveByX(x, y: y, duration: 0))
             
-            var dirX=Double(people.position.x - finish.position.x)
-            var dirY=Double(people.position.y - finish.position.y)
+            let dirX=Double(people.position.x - finish.position.x)
+            let dirY=Double(people.position.y - finish.position.y)
             
-            var dir=sqrt(dirX*dirX+dirY*dirY)
+            let dir=sqrt(dirX*dirX+dirY*dirY)
             
             if dir<29{
                 restart()
@@ -535,22 +535,22 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         lastlocation = presentlocation
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
       
 
-        for touch in (touches as! Set<UITouch>){
+        for touch in (touches ){
             
             endlocation = touch.locationInNode(self)
             
         }
         
-        if throw == Throw.rock && !stop{
+        if `throw` == Throw.rock && !stop{
             if !distouch{
                 if !peopleable{
-                var dirX=Double(beginlocation.x - endlocation.x)
-                var dirY=Double(beginlocation.y - endlocation.y)
+                let dirX=Double(beginlocation.x - endlocation.x)
+                let dirY=Double(beginlocation.y - endlocation.y)
                 
-                var dir=sqrt(dirX*dirX+dirY*dirY)
+                let dir=sqrt(dirX*dirX+dirY*dirY)
                 
                 if dir>30{
                 rockcount++
@@ -606,14 +606,14 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     
     
     func newrock(){
-        var rock1 = Rock()
+        let rock1 = Rock()
         rock1.setrock()
         rockarray.append(rock1)
         disrock=false
         self.addChild(rock1)
         rock1.inarray = rockarray.count-1
         
-        throw = Throw.rock
+        `throw` = Throw.rock
         
     }
     
@@ -623,7 +623,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         peopleable=true
         self.addChild(people)
         
-        throw = Throw.people
+        `throw` = Throw.people
         
         buttonhid = true
         
@@ -667,7 +667,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         if go{
             
-            println(rockarray.count)
+            print(rockarray.count)
 
             rockarray.last?.removeFromParent()
                         

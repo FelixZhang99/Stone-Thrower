@@ -21,10 +21,10 @@ let file = url.URLByAppendingPathComponent("save level.plist")
 
 func save(){
     
-    var array : NSArray = NSArray(objects: level , restlife , restrock)
+    var array : NSArray = NSArray(objects: level , restlife , restrock , bestlevel)
     
     if die{
-        array = NSArray(objects: 1,3,3)
+        array = NSArray(objects: 1,3,3 , bestlevel)
     }
     
       
@@ -39,7 +39,7 @@ func load(){
     let exist = filemanager.fileExistsAtPath(file.path!)
     
     if !exist{
-        let nsarray : NSArray = [1,3,3]
+        let nsarray : NSArray = [1,3,3,bestlevel]
         
         nsarray.writeToURL(file, atomically: true)
         
@@ -53,13 +53,15 @@ func load(){
     
     let number3 = (array[2]) as! NSNumber
     
+    let number4 = (array[3]) as! NSNumber
+    
     level = number.integerValue
     
     restlife = number2.integerValue
     
     restrock = number3.integerValue
     
-    
+    bestlevel = number4.integerValue
     
 }
 

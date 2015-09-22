@@ -15,11 +15,12 @@ var nextlevel=false
 var level=1
 var go=false
 var stop=false
+var bestlevel=1
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
         if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
-            var sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
+            var sceneData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
             var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
             
             archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
@@ -45,7 +46,7 @@ class GameViewController: UIViewController {
     @IBAction func dismiss(){
     
         
-               self.viewDidLoad()
+        self.viewDidLoad()
 
         
     }
@@ -116,6 +117,8 @@ class GameViewController: UIViewController {
         pausebut.alpha = 1
         self.view.addSubview(pausebut)
         
+        save()
+        
     }
     
     func gopeople(){
@@ -163,7 +166,7 @@ class GameViewController: UIViewController {
     
     
     func mybutton(txt:String,y:CGFloat)-> UIButton{
-        var button : UIButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        var button : UIButton = UIButton(type: UIButtonType.System)
         
         button.frame = CGRectMake(width, y, 120, 40)
         
@@ -215,7 +218,7 @@ class GameViewController: UIViewController {
     }
     
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if nextlevel{
            
                        
@@ -246,6 +249,10 @@ class GameViewController: UIViewController {
             }
             restrock += 3
             level++
+            
+            if level>bestlevel{
+                bestlevel = level
+            }
             
             save()
             
@@ -292,7 +299,7 @@ class GameViewController: UIViewController {
         return true
     }
 
-    override func supportedInterfaceOrientations() -> Int {
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
             return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
         } else {

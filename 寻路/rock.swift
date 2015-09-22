@@ -67,7 +67,7 @@ class Rock:SKShapeNode{
             x *= 800/dis
             y *= 800/dis
             
-            println(sqrt(x*x+y*y))
+            print(sqrt(x*x+y*y))
         }
         
         self.physicsBody?.velocity = CGVectorMake(x, y)

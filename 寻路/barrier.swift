@@ -26,7 +26,7 @@ class blocker:SKShapeNode {
         
         var randomsize = CGFloat(random()%30 - 15)
         
-        ballsize = width/4 + randomsize
+        ballsize = width/6 + randomsize
         
         x = (CGFloat(arc4random()) % (width-ballsize-10)) + (ballsize/2+5)
         y = (CGFloat(arc4random()) % (height-ballsize-30)) + (ballsize/2+5)
@@ -66,6 +66,35 @@ class blocker:SKShapeNode {
     }
     
 }
+
+class strick:blocker{
+    
+    override func setbarrier() {
+        
+        x = (CGFloat(arc4random()) % (width-ballsize-10)) + (ballsize/2+5)
+        y = (CGFloat(arc4random()) % (height-ballsize-30)) + (ballsize/2+5)
+        self.path = CGPathCreateWithRect(CGRectMake(-50, -5, 100, 10), nil)
+        self.position = CGPointMake(x, y)
+        self.strokeColor = SKColor.blackColor()
+        self.fillColor = SKColor.grayColor()
+        
+        
+        
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, 10))
+        
+       
+        
+        
+        
+    }
+    
+}
+
+
+
+
+
+
 
 
 class BitMaskType{
