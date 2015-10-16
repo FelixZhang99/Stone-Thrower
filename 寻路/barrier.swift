@@ -13,7 +13,7 @@ import SpriteKit
 
 
 
-class blocker:SKShapeNode {
+class blocker:SKSpriteNode {
     var ballsize:CGFloat=0
         
     var x:CGFloat = 0
@@ -22,21 +22,26 @@ class blocker:SKShapeNode {
     var isshow = false
 
     
-    func setbarrier(){
+    
+    func setbarrier(bs:CGFloat,x:CGFloat,y:CGFloat){
         
-        var randomsize = CGFloat(random()%30 - 15)
+        let i = arc4random()%4 + 1
         
-        ballsize = width/6 + randomsize
+        let texture = SKTexture(imageNamed: "wood\(i).png")
         
-        x = (CGFloat(arc4random()) % (width-ballsize-10)) + (ballsize/2+5)
-        y = (CGFloat(arc4random()) % (height-ballsize-30)) + (ballsize/2+5)
+        self.x = x
+        self.y = y
         
         
-        self.path = CGPathCreateWithRoundedRect(CGRectMake(-ballsize/2, -ballsize/2, ballsize, ballsize), ballsize/2, ballsize/2, nil)
+        ballsize = bs
+        
+                
+        self.texture = texture
+        self.size = CGSizeMake(ballsize, ballsize)
+        
         self.position = CGPointMake(x, y)
-        self.strokeColor = SKColor.blackColor()
-        self.fillColor = SKColor.grayColor()
-        self.physicsBody = SKPhysicsBody(circleOfRadius: ballsize/2, center: CGPointMake(0, 0))
+        
+        self.physicsBody = SKPhysicsBody(circleOfRadius: ballsize/2)
         
         
         self.physicsBody?.usesPreciseCollisionDetection = true
@@ -48,6 +53,8 @@ class blocker:SKShapeNode {
         self.alpha = 0
         
         
+        
+        
     }
     
     func show(){
@@ -56,8 +63,8 @@ class blocker:SKShapeNode {
     
     func showmore(){
         
-        if self.alpha<0.5{
-            self.alpha += 0.02
+        if self.alpha<1{
+            self.alpha += 0.05
             
             var timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "showmore", userInfo: nil, repeats: false)
         
@@ -67,26 +74,56 @@ class blocker:SKShapeNode {
     
 }
 
-class strick:blocker{
+class stick:blocker{
     
-    override func setbarrier() {
+    override func setbarrier(bs:CGFloat,x:CGFloat,y:CGFloat) {
         
-        x = (CGFloat(arc4random()) % (width-ballsize-10)) + (ballsize/2+5)
-        y = (CGFloat(arc4random()) % (height-ballsize-30)) + (ballsize/2+5)
-        self.path = CGPathCreateWithRect(CGRectMake(-50, -5, 100, 10), nil)
+        let i = arc4random()%2 + 1
+        
+        let texture = SKTexture(imageNamed: "stick\(i).png")
+        
+        self.x = x
+        self.y = y
+        
+        //x = (CGFloat(arc4random()) % (width-110)) + (55)
+        //y = (CGFloat(arc4random()) % (height-120)) + (55)
+        
+        
+        self.texture = texture
+        self.size = CGSizeMake(100, 10)
         self.position = CGPointMake(x, y)
-        self.strokeColor = SKColor.blackColor()
-        self.fillColor = SKColor.grayColor()
+        
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
+     
+        
+        self.physicsBody?.usesPreciseCollisionDetection = true
+        self.physicsBody?.dynamic = true
+        self.physicsBody?.categoryBitMask = BitMaskType.stick
+        self.physicsBody?.allowsRotation = false
+        self.physicsBody?.restitution = 1
+        self.physicsBody?.angularVelocity = CGFloat(arc4random()%10)
+        
+        self.alpha = 0
+        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "stopmove", userInfo: nil, repeats: false)
+        
+    }
+    
+    func stopmove(){
         
         
+        x = self.position.x
+        y = self.position.y
         
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(100, 10))
+        self.physicsBody?.dynamic = false
         
-       
+        self.physicsBody?.categoryBitMask = BitMaskType.stick
+        
         
         
         
     }
+    
     
 }
 
@@ -106,16 +143,20 @@ class BitMaskType{
         return 1<<1
     }
     
-    class var edge:UInt32 {
+    class var stick:UInt32{
         return 1<<2
     }
     
-    class var finish:UInt32{
+    class var edge:UInt32 {
         return 1<<3
     }
     
-    class var people:UInt32 {
+    class var finish:UInt32{
         return 1<<4
+    }
+    
+    class var people:UInt32 {
+        return 1<<5
     }
 }
 

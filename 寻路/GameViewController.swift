@@ -16,12 +16,13 @@ var level=1
 var go=false
 var stop=false
 var bestlevel=1
+var again=false
 
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
         if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
-            var sceneData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
-            var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
+            let sceneData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
+            let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
             
             archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
             let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GameScene
@@ -35,19 +36,26 @@ extension SKNode {
 
 class GameViewController: UIViewController {
 
-    let viewTransitionDelegate = TransitionDelegate()
+    
 
     var scenearray : [GameScene] = []
     
-    var again=false
+    
     
     @IBOutlet var button:UIButton!
     
     @IBAction func dismiss(){
     
+    
+        
+        button.enabled = false
         
         self.viewDidLoad()
 
+        
+        
+        
+        
         
     }
     
@@ -55,14 +63,26 @@ class GameViewController: UIViewController {
     
     var levellabel = UILabel()
     
+    var bestlabel = UILabel()
+    
     var gobutton = UIButton()
     
     var pausebut = UIButton()
+    
+    var storebut = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         load()
+        
+        if restlife<1{
+            restlife=3
+            restrock=3
+            level=1
+            save()
+        }
+        
         
         width=self.view.bounds.width
         height=self.view.bounds.height
@@ -91,7 +111,7 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
             
-            scene.alpha = 0
+            
             
            
             scene.alpha = 1
@@ -110,12 +130,20 @@ class GameViewController: UIViewController {
         button.center = self.view.center
         button.enabled = false
         button.setTitle("next", forState: .Normal)
+        button.titleLabel?.textColor = UIColor.blackColor()
         
         pausebut.frame = CGRectMake(width - 60, 40 , 45, 30)
         pausebut.setImage(UIImage(named: "stop.tif"), forState: .Normal)
         pausebut.addTarget(self, action: Selector("suspend"), forControlEvents: UIControlEvents.TouchUpInside)
         pausebut.alpha = 1
         self.view.addSubview(pausebut)
+        
+        storebut.frame = CGRectMake(24, 45, 30, 30)
+        storebut.setImage(UIImage(named: "store.png"), forState: .Normal)
+        storebut.addTarget(self, action: Selector("store"), forControlEvents: UIControlEvents.TouchUpInside)
+        storebut.alpha = 1
+        
+        self.view.addSubview(storebut)
         
         save()
         
@@ -133,10 +161,21 @@ class GameViewController: UIViewController {
         
     }
     
+    func store(){
+        
+        
+        let storeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("store")
+        
+        self.presentViewController(storeViewController, animated: false, completion: nil)
+        
+        
+        
+    }
     
     
     var continuegame:UIButton!
     var restart:UIButton!
+    var setting:UIButton!
     var help:UIButton!
     
     
@@ -149,15 +188,19 @@ class GameViewController: UIViewController {
         
         pausebut.enabled = false
         
-        continuegame = mybutton("继续游戏", y: height/2-45)
+        continuegame = mybutton("继续游戏", y: height/2-90)
         
-        restart = mybutton("重新开始", y: height/2)
+        restart = mybutton("重新开始", y: height/2-45)
+        
+        setting = mybutton("设置", y: height/2)
         
         help = mybutton("帮助", y: height/2+45)
         
         continuegame.addTarget(self, action: Selector("cg"), forControlEvents: UIControlEvents.TouchUpInside)
         
         restart.addTarget(self, action: Selector("replay"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        setting.addTarget(self, action: Selector("set"), forControlEvents: UIControlEvents.TouchUpInside)
         
         help.addTarget(self, action: Selector("gohelp"), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -166,7 +209,7 @@ class GameViewController: UIViewController {
     
     
     func mybutton(txt:String,y:CGFloat)-> UIButton{
-        var button : UIButton = UIButton(type: UIButtonType.System)
+        let button : UIButton = UIButton(type: UIButtonType.System)
         
         button.frame = CGRectMake(width, y, 120, 40)
         
@@ -194,6 +237,8 @@ class GameViewController: UIViewController {
         
         restart.removeFromSuperview()
         
+        setting.removeFromSuperview()
+        
         help.removeFromSuperview()
         
         stop=false
@@ -208,15 +253,39 @@ class GameViewController: UIViewController {
         
         restlife = 3
         
-        restrock = 0
-        
-        self.viewDidLoad()
+        restrock = 3
         
         cg()
         
         stop = false
+        
+        again=false
+        
+        die = false
+        
+        save()
+        self.viewDidLoad()
+       
     }
     
+    func set(){
+        
+        let setViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("setting")
+        
+        self.presentViewController(setViewController, animated: false, completion: nil)
+        
+        
+    }
+    
+    
+    func gohelp(){
+        
+        let helpViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("help")
+        
+        self.presentViewController(helpViewController, animated: false, completion: nil)
+        
+        
+    }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if nextlevel{
@@ -224,37 +293,28 @@ class GameViewController: UIViewController {
                        
             rest.text = "*\(restlife)"
             
-            if die==true{
+            if restlife==0{
                 
                 button.setTitle("again", forState: .Normal)
                 
                 again=true
             }
             
+            if self.button.alpha==0{
+            
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.button.alpha=1
                 self.button.enabled = true
                 }, completion: nil)
-            
-            if self.again==true{
-                self.again=false
+           
+               
+                nextdata()
                 
-                restlife = 3
-                
-                die = false
-                
-                level = 0
-                
+                save()
                 
             }
-            restrock += 3
-            level++
             
-            if level>bestlevel{
-                bestlevel = level
-            }
             
-            save()
             
             
             
@@ -292,6 +352,14 @@ class GameViewController: UIViewController {
         
         self.view.addSubview(levellabel)
         
+        bestlabel.text = "Best:\(bestlevel)"
+        
+        bestlabel.frame = CGRectMake(width-80, 4, 80, 12)
+        
+        bestlabel.textAlignment = NSTextAlignment.Center
+        
+        self.view.addSubview(bestlabel)
+        
         self.view.backgroundColor = UIColor.whiteColor()
     }
 
@@ -301,9 +369,9 @@ class GameViewController: UIViewController {
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
+            return UIInterfaceOrientationMask.AllButUpsideDown
         } else {
-            return Int(UIInterfaceOrientationMask.All.rawValue)
+            return UIInterfaceOrientationMask.All
         }
     }
 

@@ -10,7 +10,6 @@
 		B446B4731B959B3700C09FA8 /* rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446B4721B959B3700C09FA8 /* rock.swift */; };
 		B446B4A71B99456900C09FA8 /* finish.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446B4A61B99456900C09FA8 /* finish.swift */; };
 		B446B4A91B994EF500C09FA8 /* people.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446B4A81B994EF500C09FA8 /* people.swift */; };
-		B446B4AB1B99906300C09FA8 /* transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446B4AA1B99906300C09FA8 /* transition.swift */; };
 		B457B98C1B8C3DAA00898802 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B457B98B1B8C3DAA00898802 /* AppDelegate.swift */; };
 		B457B98E1B8C3DAA00898802 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B457B98D1B8C3DAA00898802 /* GameScene.sks */; };
 		B457B9901B8C3DAA00898802 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B457B98F1B8C3DAA00898802 /* GameScene.swift */; };
@@ -24,6 +23,36 @@
 		B4C614F11BA9663600486214 /* buttom.tif in Resources */ = {isa = PBXBuildFile; fileRef = B4C614F01BA9663600486214 /* buttom.tif */; };
 		B4C614F31BABB47700486214 /* save.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C614F21BABB47700486214 /* save.swift */; };
 		B4C614F51BABED3A00486214 /* stop.tif in Resources */ = {isa = PBXBuildFile; fileRef = B4C614F41BABED3A00486214 /* stop.tif */; };
+		B4CEBB401BB2A33B00F12731 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CEBB3F1BB2A33B00F12731 /* HelpViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		B4CEBB441BB3BEE400F12731 /* music.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CEBB431BB3BEE400F12731 /* music.swift */; settings = {ASSET_TAGS = (); }; };
+		B4CF847E1BB41EFE00C72C51 /* hit1.wav in Resources */ = {isa = PBXBuildFile; fileRef = B4CF847D1BB41EFE00C72C51 /* hit1.wav */; settings = {ASSET_TAGS = (); }; };
+		B4CF84801BB41F0400C72C51 /* hit2.wav in Resources */ = {isa = PBXBuildFile; fileRef = B4CF847F1BB41F0400C72C51 /* hit2.wav */; settings = {ASSET_TAGS = (); }; };
+		B4CF84821BB41F0900C72C51 /* hit3.wav in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84811BB41F0900C72C51 /* hit3.wav */; settings = {ASSET_TAGS = (); }; };
+		B4CF84861BB4F97D00C72C51 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CF84851BB4F97D00C72C51 /* SettingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		B4CF84881BB5184D00C72C51 /* nextlevel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84871BB5184D00C72C51 /* nextlevel.mp3 */; settings = {ASSET_TAGS = (); }; };
+		B4CF848A1BB51BA600C72C51 /* failed.wav in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84891BB51BA600C72C51 /* failed.wav */; settings = {ASSET_TAGS = (); }; };
+		B4CF849E1BCB89A900C72C51 /* wood2.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF849D1BCB89A900C72C51 /* wood2.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84A21BCB89C600C72C51 /* wood3.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84A11BCB89C600C72C51 /* wood3.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84A41BCB89D200C72C51 /* wood1.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84A31BCB89D200C72C51 /* wood1.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84A61BCB89D800C72C51 /* wood4.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84A51BCB89D800C72C51 /* wood4.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84A81BCB89E400C72C51 /* rock2.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84A71BCB89E400C72C51 /* rock2.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84AA1BCB89EC00C72C51 /* rock3.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84A91BCB89EC00C72C51 /* rock3.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84AC1BCB89F300C72C51 /* rock1.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84AB1BCB89F300C72C51 /* rock1.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84AE1BCB89FB00C72C51 /* stick1.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84AD1BCB89FB00C72C51 /* stick1.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84B01BCB8A0100C72C51 /* stick2.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84AF1BCB8A0100C72C51 /* stick2.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84B41BCB934E00C72C51 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84B31BCB934D00C72C51 /* grass.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84BB1BCB9A7C00C72C51 /* fence2.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84B51BCB9A7C00C72C51 /* fence2.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84BC1BCB9A7C00C72C51 /* fence3.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84B61BCB9A7C00C72C51 /* fence3.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84BD1BCB9A7C00C72C51 /* fence13.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84B71BCB9A7C00C72C51 /* fence13.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84BE1BCB9A7C00C72C51 /* fence12.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84B81BCB9A7C00C72C51 /* fence12.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84BF1BCB9A7C00C72C51 /* fence11.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84B91BCB9A7C00C72C51 /* fence11.png */; settings = {ASSET_TAGS = (); }; };
+		B4CF84C01BCB9A7C00C72C51 /* fence1.png in Resources */ = {isa = PBXBuildFile; fileRef = B4CF84BA1BCB9A7C00C72C51 /* fence1.png */; settings = {ASSET_TAGS = (); }; };
+		B4D309B11BCE0A5000074661 /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = B4D309B01BCE0A5000074661 /* flag.png */; settings = {ASSET_TAGS = (); }; };
+		B4D309B31BCE0DF700074661 /* grass1.png in Resources */ = {isa = PBXBuildFile; fileRef = B4D309B21BCE0DF700074661 /* grass1.png */; settings = {ASSET_TAGS = (); }; };
+		B4D309B51BCE0DFD00074661 /* grass2.png in Resources */ = {isa = PBXBuildFile; fileRef = B4D309B41BCE0DFD00074661 /* grass2.png */; settings = {ASSET_TAGS = (); }; };
+		B4D309B91BCE139600074661 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D309B81BCE139600074661 /* StoreViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		B4D309BB1BCE1C3900074661 /* store.png in Resources */ = {isa = PBXBuildFile; fileRef = B4D309BA1BCE1C3900074661 /* store.png */; settings = {ASSET_TAGS = (); }; };
+		B4D309BD1BCF95A700074661 /* to.png in Resources */ = {isa = PBXBuildFile; fileRef = B4D309BC1BCF95A700074661 /* to.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +69,6 @@
 		B446B4721B959B3700C09FA8 /* rock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rock.swift; sourceTree = "<group>"; };
 		B446B4A61B99456900C09FA8 /* finish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = finish.swift; sourceTree = "<group>"; };
 		B446B4A81B994EF500C09FA8 /* people.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = people.swift; sourceTree = "<group>"; };
-		B446B4AA1B99906300C09FA8 /* transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transition.swift; sourceTree = "<group>"; };
 		B457B9861B8C3DAA00898802 /* 寻路.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "寻路.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B457B98A1B8C3DAA00898802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B457B98B1B8C3DAA00898802 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +86,38 @@
 		B4C614F01BA9663600486214 /* buttom.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = buttom.tif; path = "../../../../Documents/别碰我/No-Touch/No-Touch/别碰我/Images.xcassets/buttom.tif"; sourceTree = "<group>"; };
 		B4C614F21BABB47700486214 /* save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = save.swift; sourceTree = "<group>"; };
 		B4C614F41BABED3A00486214 /* stop.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = stop.tif; path = "../../../../Documents/别碰我/No-Touch/No-Touch/别碰我/Images.xcassets/stop.tif"; sourceTree = "<group>"; };
+		B4CEBB3F1BB2A33B00F12731 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		B4CEBB431BB3BEE400F12731 /* music.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = music.swift; sourceTree = "<group>"; };
+		B4CF847D1BB41EFE00C72C51 /* hit1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hit1.wav; path = ../../../../Documents/hit1.wav; sourceTree = "<group>"; };
+		B4CF847F1BB41F0400C72C51 /* hit2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hit2.wav; path = ../../../../Documents/hit2.wav; sourceTree = "<group>"; };
+		B4CF84811BB41F0900C72C51 /* hit3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hit3.wav; path = ../../../../Documents/hit3.wav; sourceTree = "<group>"; };
+		B4CF84831BB4253100C72C51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		B4CF84841BB4253100C72C51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		B4CF84851BB4F97D00C72C51 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		B4CF84871BB5184D00C72C51 /* nextlevel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = nextlevel.mp3; path = ../../../../Downloads/nextlevel.mp3; sourceTree = "<group>"; };
+		B4CF84891BB51BA600C72C51 /* failed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = failed.wav; path = ../../../../Downloads/failed.wav; sourceTree = "<group>"; };
+		B4CF849D1BCB89A900C72C51 /* wood2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wood2.png; path = ../../../../Documents/wood2.png; sourceTree = "<group>"; };
+		B4CF84A11BCB89C600C72C51 /* wood3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wood3.png; path = ../../../../Documents/wood3.png; sourceTree = "<group>"; };
+		B4CF84A31BCB89D200C72C51 /* wood1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wood1.png; path = ../../../../Documents/wood1.png; sourceTree = "<group>"; };
+		B4CF84A51BCB89D800C72C51 /* wood4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wood4.png; path = ../../../../Documents/wood4.png; sourceTree = "<group>"; };
+		B4CF84A71BCB89E400C72C51 /* rock2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rock2.png; path = ../../../../Documents/rock2.png; sourceTree = "<group>"; };
+		B4CF84A91BCB89EC00C72C51 /* rock3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rock3.png; path = ../../../../Documents/rock3.png; sourceTree = "<group>"; };
+		B4CF84AB1BCB89F300C72C51 /* rock1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rock1.png; path = ../../../../Documents/rock1.png; sourceTree = "<group>"; };
+		B4CF84AD1BCB89FB00C72C51 /* stick1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stick1.png; path = ../../../../Documents/stick1.png; sourceTree = "<group>"; };
+		B4CF84AF1BCB8A0100C72C51 /* stick2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stick2.png; path = ../../../../Documents/stick2.png; sourceTree = "<group>"; };
+		B4CF84B31BCB934D00C72C51 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass.png; path = ../../../../Documents/grass.png; sourceTree = "<group>"; };
+		B4CF84B51BCB9A7C00C72C51 /* fence2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fence2.png; path = ../../../../Documents/fence2.png; sourceTree = "<group>"; };
+		B4CF84B61BCB9A7C00C72C51 /* fence3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fence3.png; path = ../../../../Documents/fence3.png; sourceTree = "<group>"; };
+		B4CF84B71BCB9A7C00C72C51 /* fence13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fence13.png; path = ../../../../Documents/fence13.png; sourceTree = "<group>"; };
+		B4CF84B81BCB9A7C00C72C51 /* fence12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fence12.png; path = ../../../../Documents/fence12.png; sourceTree = "<group>"; };
+		B4CF84B91BCB9A7C00C72C51 /* fence11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fence11.png; path = ../../../../Documents/fence11.png; sourceTree = "<group>"; };
+		B4CF84BA1BCB9A7C00C72C51 /* fence1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fence1.png; path = ../../../../Documents/fence1.png; sourceTree = "<group>"; };
+		B4D309B01BCE0A5000074661 /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flag.png; path = ../../../../Documents/flag.png; sourceTree = "<group>"; };
+		B4D309B21BCE0DF700074661 /* grass1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass1.png; path = ../../../../Documents/grass1.png; sourceTree = "<group>"; };
+		B4D309B41BCE0DFD00074661 /* grass2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass2.png; path = ../../../../Documents/grass2.png; sourceTree = "<group>"; };
+		B4D309B81BCE139600074661 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		B4D309BA1BCE1C3900074661 /* store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = store.png; path = ../../../../Documents/store.png; sourceTree = "<group>"; };
+		B4D309BC1BCF95A700074661 /* to.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = to.png; path = "../../../../Documents/别碰我/No-Touch/别碰我/Images.xcassets/to.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +166,11 @@
 				B446B4721B959B3700C09FA8 /* rock.swift */,
 				B446B4A61B99456900C09FA8 /* finish.swift */,
 				B446B4A81B994EF500C09FA8 /* people.swift */,
-				B446B4AA1B99906300C09FA8 /* transition.swift */,
+				B4CEBB431BB3BEE400F12731 /* music.swift */,
 				B4C614F21BABB47700486214 /* save.swift */,
+				B4CEBB3F1BB2A33B00F12731 /* HelpViewController.swift */,
+				B4CF84851BB4F97D00C72C51 /* SettingViewController.swift */,
+				B4D309B81BCE139600074661 /* StoreViewController.swift */,
 				B457B9911B8C3DAA00898802 /* GameViewController.swift */,
 				B457B9931B8C3DAA00898802 /* Main.storyboard */,
 				B457B9961B8C3DAA00898802 /* Images.xcassets */,
@@ -120,10 +183,36 @@
 		B457B9891B8C3DAA00898802 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4D309BA1BCE1C3900074661 /* store.png */,
+				B4D309B01BCE0A5000074661 /* flag.png */,
+				B4D309B41BCE0DFD00074661 /* grass2.png */,
+				B4D309B21BCE0DF700074661 /* grass1.png */,
+				B4CF84BA1BCB9A7C00C72C51 /* fence1.png */,
+				B4CF84B51BCB9A7C00C72C51 /* fence2.png */,
+				B4CF84B61BCB9A7C00C72C51 /* fence3.png */,
+				B4CF84B91BCB9A7C00C72C51 /* fence11.png */,
+				B4CF84B81BCB9A7C00C72C51 /* fence12.png */,
+				B4CF84B71BCB9A7C00C72C51 /* fence13.png */,
+				B4CF84B31BCB934D00C72C51 /* grass.png */,
+				B4CF84AD1BCB89FB00C72C51 /* stick1.png */,
+				B4CF84AF1BCB8A0100C72C51 /* stick2.png */,
+				B4CF84A31BCB89D200C72C51 /* wood1.png */,
+				B4CF849D1BCB89A900C72C51 /* wood2.png */,
+				B4CF84A11BCB89C600C72C51 /* wood3.png */,
+				B4CF84A51BCB89D800C72C51 /* wood4.png */,
+				B4CF84AB1BCB89F300C72C51 /* rock1.png */,
+				B4CF84A71BCB89E400C72C51 /* rock2.png */,
+				B4CF84A91BCB89EC00C72C51 /* rock3.png */,
 				B4C614F41BABED3A00486214 /* stop.tif */,
 				B4C614F01BA9663600486214 /* buttom.tif */,
 				B4C614EE1BA957E300486214 /* life.tif */,
+				B4D309BC1BCF95A700074661 /* to.png */,
 				B457B98A1B8C3DAA00898802 /* Info.plist */,
+				B4CF847D1BB41EFE00C72C51 /* hit1.wav */,
+				B4CF847F1BB41F0400C72C51 /* hit2.wav */,
+				B4CF84811BB41F0900C72C51 /* hit3.wav */,
+				B4CF84871BB5184D00C72C51 /* nextlevel.mp3 */,
+				B4CF84891BB51BA600C72C51 /* failed.wav */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -208,7 +297,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = B457B97D1B8C3DAA00898802;
@@ -227,11 +315,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D309BD1BCF95A700074661 /* to.png in Resources */,
+				B4CF84BB1BCB9A7C00C72C51 /* fence2.png in Resources */,
+				B4D309BB1BCE1C3900074661 /* store.png in Resources */,
 				B4C614F11BA9663600486214 /* buttom.tif in Resources */,
+				B4D309B51BCE0DFD00074661 /* grass2.png in Resources */,
+				B4CF84BF1BCB9A7C00C72C51 /* fence11.png in Resources */,
+				B4CF84A61BCB89D800C72C51 /* wood4.png in Resources */,
 				B457B99A1B8C3DAA00898802 /* LaunchScreen.xib in Resources */,
+				B4CF84BD1BCB9A7C00C72C51 /* fence13.png in Resources */,
+				B4CF84A81BCB89E400C72C51 /* rock2.png in Resources */,
+				B4CF84C01BCB9A7C00C72C51 /* fence1.png in Resources */,
+				B4CF84AC1BCB89F300C72C51 /* rock1.png in Resources */,
 				B4C614F51BABED3A00486214 /* stop.tif in Resources */,
+				B4CF848A1BB51BA600C72C51 /* failed.wav in Resources */,
+				B4CF84821BB41F0900C72C51 /* hit3.wav in Resources */,
+				B4D309B31BCE0DF700074661 /* grass1.png in Resources */,
+				B4CF84BC1BCB9A7C00C72C51 /* fence3.png in Resources */,
+				B4CF849E1BCB89A900C72C51 /* wood2.png in Resources */,
+				B4CF84A41BCB89D200C72C51 /* wood1.png in Resources */,
+				B4CF84AA1BCB89EC00C72C51 /* rock3.png in Resources */,
+				B4CF84B41BCB934E00C72C51 /* grass.png in Resources */,
 				B457B9971B8C3DAA00898802 /* Images.xcassets in Resources */,
+				B4CF84801BB41F0400C72C51 /* hit2.wav in Resources */,
+				B4CF84B01BCB8A0100C72C51 /* stick2.png in Resources */,
+				B4CF84AE1BCB89FB00C72C51 /* stick1.png in Resources */,
+				B4CF84A21BCB89C600C72C51 /* wood3.png in Resources */,
 				B4C614EF1BA957E300486214 /* life.tif in Resources */,
+				B4D309B11BCE0A5000074661 /* flag.png in Resources */,
+				B4CF847E1BB41EFE00C72C51 /* hit1.wav in Resources */,
+				B4CF84BE1BCB9A7C00C72C51 /* fence12.png in Resources */,
+				B4CF84881BB5184D00C72C51 /* nextlevel.mp3 in Resources */,
 				B457B98E1B8C3DAA00898802 /* GameScene.sks in Resources */,
 				B457B9951B8C3DAA00898802 /* Main.storyboard in Resources */,
 			);
@@ -252,13 +366,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B446B4A91B994EF500C09FA8 /* people.swift in Sources */,
+				B4CF84861BB4F97D00C72C51 /* SettingViewController.swift in Sources */,
+				B4CEBB441BB3BEE400F12731 /* music.swift in Sources */,
 				B446B4A71B99456900C09FA8 /* finish.swift in Sources */,
 				B457B9901B8C3DAA00898802 /* GameScene.swift in Sources */,
 				B4C614F31BABB47700486214 /* save.swift in Sources */,
+				B4CEBB401BB2A33B00F12731 /* HelpViewController.swift in Sources */,
 				B446B4731B959B3700C09FA8 /* rock.swift in Sources */,
+				B4D309B91BCE139600074661 /* StoreViewController.swift in Sources */,
 				B457B9921B8C3DAA00898802 /* GameViewController.swift in Sources */,
 				B457B98C1B8C3DAA00898802 /* AppDelegate.swift in Sources */,
-				B446B4AB1B99906300C09FA8 /* transition.swift in Sources */,
 				B4B628F91B8C932A00885EEB /* barrier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +403,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B457B9941B8C3DAA00898802 /* Base */,
+				B4CF84831BB4253100C72C51 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -294,6 +412,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B457B9991B8C3DAA00898802 /* Base */,
+				B4CF84841BB4253100C72C51 /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

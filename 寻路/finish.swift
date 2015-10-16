@@ -14,13 +14,13 @@ class Finish:SKShapeNode{
     
     func setfinish(){
         
-        self.path = CGPathCreateWithRoundedRect(CGRectMake(-9, -9, 18, 18), 9, 9, nil)
+        self.path = CGPathCreateWithRoundedRect(CGRectMake(-15, -15, 30, 30), 15, 15, nil)
         
-        self.strokeColor = SKColor.grayColor()
-        self.fillColor = SKColor.grayColor()
+        self.strokeColor = SKColor.brownColor()
+        self.fillColor = SKColor.brownColor()
         self.position = CGPointMake(width/2, 9*height/10-20)
         
-        
+        self.alpha = 0
        
     }
     

@@ -13,7 +13,7 @@ let filemanager = NSFileManager.defaultManager()
 
 let Documenturl = filemanager.URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask)
 
-let url = Documenturl[0] as! NSURL
+let url = Documenturl[0] 
 
 var error:NSError?
 

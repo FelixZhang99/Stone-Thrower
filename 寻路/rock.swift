@@ -14,7 +14,7 @@ enum Status:Int{
 }
 
 
-class Rock:SKShapeNode{
+class Rock:SKSpriteNode{
     
     var status = Status.stop
     
@@ -26,13 +26,15 @@ class Rock:SKShapeNode{
     
     func setrock(){
        
+        let i = arc4random()%3 + 1
+        
+        let texture = SKTexture(imageNamed: "rock\(i).png")
+        
+        self.texture = texture
+        self.size = CGSizeMake(18, 18)
         
         
-        self.path = CGPathCreateWithRoundedRect(CGRectMake(-9, -9, 18, 18), 9, 9, nil)
-        
-        self.strokeColor = SKColor.grayColor()
-        self.fillColor = SKColor.grayColor()
-        self.position = CGPointMake(width/2, height/10)
+        self.position = CGPointMake(width/2, height/8)
         
         
         self.status = .stop
@@ -40,6 +42,9 @@ class Rock:SKShapeNode{
     }
     
     func moverock(begin:CGPoint,end:CGPoint){
+        
+        
+        
         self.physicsBody = SKPhysicsBody(circleOfRadius: 9, center: CGPointMake(0, 0))
         self.physicsBody?.usesPreciseCollisionDetection = true
         self.physicsBody?.categoryBitMask = BitMaskType.rock
@@ -47,9 +52,9 @@ class Rock:SKShapeNode{
         self.physicsBody?.restitution = 1
         
         self.physicsBody?.dynamic = false
-        self.physicsBody?.contactTestBitMask = BitMaskType.block | BitMaskType.edge
-        self.physicsBody?.allowsRotation = false
-
+        self.physicsBody?.contactTestBitMask = BitMaskType.block | BitMaskType.edge | BitMaskType.stick
+        self.physicsBody?.allowsRotation = true
+        
         self.status = .move
         self.physicsBody?.dynamic = true
         
@@ -60,7 +65,7 @@ class Rock:SKShapeNode{
         y = y*10
         
        
-        var dis=sqrt(x*x+y*y)
+        let dis=sqrt(x*x+y*y)
         
         if dis>800{
             

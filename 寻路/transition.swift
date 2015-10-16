@@ -40,7 +40,7 @@ class TransitionPresetationAnimator:NSObject,UIViewControllerAnimatedTransitioni
         
         toVC!.view.alpha = 0.0
         
-        containerView.addSubview(toVC!.view)
+        containerView!.addSubview(toVC!.view)
         
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             toVC!.view.alpha = 1
@@ -69,7 +69,7 @@ class TransitionDismissalAnimator:NSObject,UIViewControllerAnimatedTransitioning
         
         fromVC?.view.alpha = 1
         
-        containerView.addSubview(toVC!.view)
+        containerView!.addSubview(toVC!.view)
         
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             

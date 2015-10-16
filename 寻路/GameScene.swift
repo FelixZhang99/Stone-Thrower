@@ -23,6 +23,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     
     var blockernumber:Int=0
     var barrierarray:[blocker]=[]
+    var sticknumber:Int=0
+    var stickarray:[stick]=[]
     
     var people = People()
     var finish = Finish()
@@ -32,8 +34,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     var pointarray:[SKShapeNode] = []
     var rocklabel = SKLabelNode()
     var gobuttom = SKSpriteNode()
-    
-    
+    let music = MusicManager()
+    var grassarr:[SKSpriteNode] = []
     var `throw` = Throw.rock
     
     override func didMoveToView(view: SKView) {
@@ -64,21 +66,51 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         self.addChild(finish)
         
+        let texture = SKTexture(imageNamed: "flag.png")
+        
+        let flag = SKSpriteNode(texture: texture)
+        
+        flag.position = CGPointMake(width/2 + 5, 9*height/10 - 15)
+        
+        flag.size = CGSizeMake(33, 45)
+        
+        self.addChild(flag)
         
         buttonhid=false
         
+        self.addChild(music)
+        
                
-        
-        
     }
     
     func setbackground(){
         
-       
+        grassarr = []
+        
+        for var k=0;k<8;k++ {
+            
+            let i = arc4random()%2 + 1
+            
+            let pos = grasspos()
+            
+            let bgtexture = SKTexture(imageNamed: "grass\(i).png")
+        
+            let bg = SKSpriteNode(texture: bgtexture)
+  
+            bg.zPosition = -5
+            
+            bg.position = CGPointMake(pos.x, pos.y)
+        
+            bg.size = CGSizeMake(60 , 40)
+        
+            grassarr.append(bg)
+            
+            self.addChild(bg)
+        }
         
         rockarray = []
         
-        self.backgroundColor = SKColor.whiteColor()
+        self.backgroundColor = SKColor(red: 153/255, green: 204/255, blue: 51/255, alpha: 0.5)
         
         self.size.width = width
         self.size.height = height
@@ -92,45 +124,127 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         rocklabel.fontColor = SKColor.blackColor()
         
-        rocklabel.position = CGPointMake(60, 20)
+        rocklabel.position = CGPointMake(80, 20)
         
         self.addChild(rocklabel)
         
-        
-        
-        
     }
+    
+    func grasspos()->(x:CGFloat , y:CGFloat){
+        
+        var x:CGFloat = 0
+        
+        var y:CGFloat = 0
+        
+        var enable = true
+        
+        repeat{
+        x = CGFloat(arc4random()) % (width - 100) + 50
+        
+        y = CGFloat(arc4random()) % (height - 100) + 50
+        
+            enable = true
+        
+            for grass in grassarr{
+          
+            let dirX=Double(x - grass.position.x)
+            let dirY=Double(y - grass.position.y)
+            
+            let dir=sqrt(dirX*dirX+dirY*dirY)
+            if dir<60{
+                enable = false
+            }
+            
+            let dirXfromrock = Double(x - width/2)
+            let dirYfromrock = Double(y - height/8)
+            let dirfromrock = sqrt(dirXfromrock * dirXfromrock + dirYfromrock * dirYfromrock)
+            
+            if dirfromrock < 60 {
+                enable = false
+            }
+            
+            let dirXfromfin = Double(x - width/2)
+            let dirYfromfin = Double(y - 9*height/10)
+            let dirfromfin = sqrt(dirXfromfin * dirXfromfin + dirYfromfin * dirYfromfin)
+            
+            if dirfromfin < 60{
+                enable = false
+            }
+        }
+        }while !enable
+        
+        return (x,y)
+    }
+    
+    //setedge
     
     func settop(){
         
         var sumlength:CGFloat = 0
-        var isblock=true
+        
+        var isblock = true
+        let num = arc4random()%2
+        if num==0{
+            isblock=true
+        }else{
+            isblock=false
+        }
         while sumlength < width{
-            let randomlength = CGFloat(arc4random()) % (width / 5) + 10
+            
             
             if isblock{
-                let topedge = SKShapeNode()
                 
-                topedge.path = CGPathCreateWithRect(CGRectMake(-randomlength/2, -5, randomlength, 10), nil)
-                topedge.position = CGPointMake(sumlength + randomlength/2, height-25)
-                topedge.strokeColor = SKColor.grayColor()
-                topedge.fillColor = SKColor.grayColor()
+                var randomlength = (CGFloat(arc4random()) % abs(width / 60)) + 2
                 
-                topedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(randomlength, 10), center: CGPointMake(0, 0))
-                print(topedge.physicsBody)
-                topedge.physicsBody?.restitution=1
-                topedge.physicsBody?.usesPreciseCollisionDetection = true
-                topedge.physicsBody?.dynamic = false
-                topedge.physicsBody?.categoryBitMask = BitMaskType.edge
+                if randomlength*18+sumlength > width - 10{
+                    randomlength = (width - 10 - sumlength)/18
+                    sumlength -= (randomlength*18 + sumlength - width + 10)
+                }
+
                 
-                self.addChild(topedge)
+                let main = SKNode()
+                main.position = CGPointMake(sumlength + 15, height-25)
+                var mainwidth:CGFloat = 0.0
                 
+                for var k=0 ; k < Int(randomlength) ; k++ {
+                
+                    let topedge = SKSpriteNode()
+                    let i = arc4random()%3 + 1
+                    let texture = SKTexture(imageNamed: "fence\(i).png")
+        
+                    topedge.texture = texture
+                    topedge.size = CGSizeMake(20, 10)
+                
+                    topedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(20, 8), center: CGPointMake(0, 0))
+                    
+                    topedge.physicsBody?.restitution=1
+                    topedge.physicsBody?.usesPreciseCollisionDetection = true
+                    topedge.physicsBody?.dynamic = false
+                    topedge.physicsBody?.categoryBitMask = BitMaskType.edge
+                
+                    topedge.position.x = mainwidth - 1
+                    main.addChild(topedge)
+                    mainwidth += topedge.size.width - 2
+                    
+                }
+                self.addChild(main)
                 isblock=false
+                
+                sumlength += randomlength * 18
             
             }else{
                 isblock=true
+                
+                var randomlength = (CGFloat(arc4random()) % abs(width / 50))*9 + 9
+                
+                if randomlength+sumlength>width{
+                    randomlength = width - sumlength
+                }
+                
+                
+                sumlength += randomlength
             }
-            sumlength += randomlength
+            
             
         }
             
@@ -140,34 +254,68 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         var sumlength:CGFloat = 0
         var isblock=true
+        
+        let num = arc4random()%2
+        if num==0{
+            isblock=true
+        }else{
+            isblock=false
+        }
         while sumlength < height-20{
-            var randomlength = CGFloat(arc4random()) % (width / 5) + 10
             
-            if randomlength+sumlength>height-20{
-                randomlength = height - 20 - sumlength
-            }
             
             
             if isblock{
-                let leftedge = SKShapeNode()
                 
-                leftedge.path = CGPathCreateWithRect(CGRectMake(-5, -randomlength/2, 10, randomlength), nil)
-                leftedge.position = CGPointMake(5, sumlength + randomlength/2)
-                leftedge.strokeColor = SKColor.grayColor()
-                leftedge.fillColor = SKColor.grayColor()
-                leftedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(10, randomlength), center: CGPointMake(0, 0))
-                leftedge.physicsBody?.usesPreciseCollisionDetection = true
-                leftedge.physicsBody?.dynamic = false
-                leftedge.physicsBody?.categoryBitMask = BitMaskType.edge
-                leftedge.physicsBody?.restitution=1
-                self.addChild(leftedge)
+                var randomlength = (CGFloat(arc4random()) % abs(width / 60)) + 2
+            
+           
+                if randomlength*18+sumlength > height-20{
+                    randomlength = (height - 20 - sumlength)/18
+                    sumlength -= (randomlength*18 + sumlength + 20 - height)
+                }
+
+                let main = SKNode()
+                main.position = CGPointMake(5, sumlength + 15)
+
+                var mainheight:CGFloat = 0.0
                 
+                for var k=0; k<Int(randomlength) ; k++ {
+                
+                    let leftedge = SKSpriteNode()
+                    let i = arc4random()%3 + 1
+                    let texture = SKTexture(imageNamed: "fence1\(i).png")
+                
+                    leftedge.texture = texture
+                    leftedge.size = CGSizeMake(10, 20)
+                    
+                    leftedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(8, 20), center: CGPointMake(0, 0))
+                    leftedge.physicsBody?.usesPreciseCollisionDetection = true
+                    leftedge.physicsBody?.dynamic = false
+                    leftedge.physicsBody?.categoryBitMask = BitMaskType.edge
+                    leftedge.physicsBody?.restitution=1
+                    
+                    leftedge.position.y = mainheight - 1
+                    main.addChild(leftedge)
+                    mainheight += leftedge.size.height - 2
+                    
+                }
                 isblock=false
+                self.addChild(main)
+                sumlength += randomlength*18
                 
             }else{
                 isblock=true
+                
+                var randomlength = (CGFloat(arc4random()) % abs(width / 60))*9 + 9
+                
+                if randomlength+sumlength>height-20{
+                    randomlength = height - 20 - sumlength
+                }
+                
+                sumlength += randomlength
             }
-            sumlength += randomlength
+            
             
             
             
@@ -179,29 +327,65 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         var sumlength:CGFloat = 0
         var isblock=true
+        
+        let num = arc4random()%2
+        if num==0{
+            isblock=true
+        }else{
+            isblock=false
+        }
         while sumlength < width{
-            let randomlength = CGFloat(arc4random()) % (width / 5) + 10
             
             if isblock{
-                let buttomedge = SKShapeNode()
                 
-                buttomedge.path = CGPathCreateWithRect(CGRectMake(-randomlength/2, -5, randomlength, 10), nil)
-                buttomedge.position = CGPointMake(sumlength + randomlength/2, 5)
-                buttomedge.strokeColor = SKColor.grayColor()
-                buttomedge.fillColor = SKColor.grayColor()
-                buttomedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(randomlength, 10), center: CGPointMake(0 , 0))
-                buttomedge.physicsBody?.usesPreciseCollisionDetection = true
-                buttomedge.physicsBody?.dynamic = false
-                buttomedge.physicsBody?.categoryBitMask = BitMaskType.edge
-                buttomedge.physicsBody?.restitution=1
-                self.addChild(buttomedge)
+                var randomlength = (CGFloat(arc4random()) % abs(width / 60)) + 2
                 
+                if randomlength*18+sumlength > width - 10{
+                    randomlength = (width - 10 - sumlength)/18
+                    sumlength -= (randomlength*18 + sumlength - width + 10)
+                }
+                
+                let main = SKNode()
+                main.position = CGPointMake(sumlength + 15, 5)
+                var mainwidth:CGFloat = 0.0
+                
+                for var k=0 ; k < Int(randomlength) ; k++ {
+                
+                    let buttomedge = SKSpriteNode()
+                    let i = arc4random()%3 + 1
+                    let texture = SKTexture(imageNamed: "fence\(i).png")
+                    
+                    buttomedge.texture = texture
+                    buttomedge.size = CGSizeMake(20, 10)
+                   
+                    buttomedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(20, 8), center: CGPointMake(0 , 0))
+                    buttomedge.physicsBody?.usesPreciseCollisionDetection = true
+                    buttomedge.physicsBody?.dynamic = false
+                    buttomedge.physicsBody?.categoryBitMask = BitMaskType.edge
+                    buttomedge.physicsBody?.restitution=1
+                    
+                    buttomedge.position.x = mainwidth - 1
+                    main.addChild(buttomedge)
+                    mainwidth += buttomedge.size.width - 2
+                }
+                    
+                    
                 isblock=false
+                self.addChild(main)
+                sumlength += randomlength * 18
                 
             }else{
                 isblock=true
+                var randomlength = (CGFloat(arc4random()) % abs(width / 50))*9 + 9
+                
+                if randomlength+sumlength>width{
+                    randomlength = width - sumlength
+                }
+                
+                sumlength += randomlength
+             
             }
-            sumlength += randomlength
+            
             
         }
         
@@ -211,51 +395,99 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         var sumlength:CGFloat = 0
         var isblock=true
+        let num = arc4random()%2
+        if num==0{
+            isblock=true
+        }else{
+            isblock=false
+        }
         while sumlength < height-20{
-            var randomlength = CGFloat(arc4random()) % (width / 5) + 10
-            
-            if randomlength+sumlength>height-20{
-                randomlength = height - 20 - sumlength
-            }
             
             if isblock{
-                let rightedge = SKShapeNode()
                 
-                rightedge.path = CGPathCreateWithRect(CGRectMake(-5, -randomlength/2, 10, randomlength), nil)
-                rightedge.position = CGPointMake(width-5, sumlength + randomlength/2)
-                rightedge.strokeColor = SKColor.grayColor()
-                rightedge.fillColor = SKColor.grayColor()
-                rightedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(10, randomlength) , center: CGPointMake(0, 0))
-                rightedge.physicsBody?.usesPreciseCollisionDetection = true
-                rightedge.physicsBody?.dynamic = false
-                rightedge.physicsBody?.categoryBitMask = BitMaskType.edge
-                rightedge.physicsBody?.restitution=1
-                self.addChild(rightedge)
+                var randomlength = (CGFloat(arc4random()) % abs(width / 60)) + 2
                 
+                
+                if randomlength*18+sumlength > height-20{
+                    randomlength = (height - 20 - sumlength)/18
+                    sumlength -= (randomlength*18 + sumlength + 20 - height)
+                }
+                
+                let main = SKNode()
+                main.position = CGPointMake(width - 5, sumlength + 15)
+                
+                var mainheight:CGFloat = 0.0
+
+                for var k=0; k<Int(randomlength) ; k++ {
+                    
+                    let rightedge = SKSpriteNode()
+                    let i = arc4random()%3 + 1
+                    let texture = SKTexture(imageNamed: "fence1\(i).png")
+               
+                    rightedge.texture = texture
+                    rightedge.size = CGSizeMake(10, 20)
+                    
+                    rightedge.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(8, 20) , center: CGPointMake(0, 0))
+                    rightedge.physicsBody?.usesPreciseCollisionDetection = true
+                    rightedge.physicsBody?.dynamic = false
+                    rightedge.physicsBody?.categoryBitMask = BitMaskType.edge
+                  
+                    rightedge.physicsBody?.restitution=1
+                    
+                    rightedge.position.y = mainheight - 1
+                    main.addChild(rightedge)
+                    mainheight += rightedge.size.height - 2
+                }
                 isblock=false
-                
+                self.addChild(main)
+                sumlength += randomlength * 18
             }else{
                 isblock=true
+                
+                var randomlength = (CGFloat(arc4random()) % abs(width / 50))*10 + 10
+                
+                if randomlength+sumlength>height-20{
+                    randomlength = height - 20 - sumlength
+                }
+                sumlength += randomlength
+                
             }
-            sumlength += randomlength
+            
             
         }
         
     }
     
+    //setblocker
+    
     func setblocker(){
         
-        if level<3{
+        if level<5{
             blockernumber = 3
-            
-        }else if level<6{
+            sticknumber=1
+        }else if level<10{
             blockernumber = 4
+            
+            sticknumber=1
+        }else if level<20{
+            blockernumber = 4
+            sticknumber=2
         }else{
             blockernumber = 5
+            sticknumber = 2
         }
         
+        let alertblock = SKLabelNode()
         
+        alertblock.text = "本关有\(blockernumber)个球形和\(sticknumber)个条形障碍物"
         
+        alertblock.position = CGPointMake(width/2, height-50)
+        
+        alertblock.fontSize = 14
+        
+        alertblock.fontColor = UIColor.blackColor()
+        
+        self.addChild(alertblock)
         
         var blockerexist=true
         var i = 0
@@ -265,38 +497,48 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             
             let block = blocker()
             
-            block.setbarrier()
+            let randomsize = CGFloat(random()%24 - 12)
+            
+            let ballsize = width/5 + randomsize
+            
+            let x = (CGFloat(arc4random()) % (width-ballsize-10)) + (ballsize/2+5)
+            let y = (CGFloat(arc4random()) % (height-ballsize-30)) + (ballsize/2+5)
+            
+            
             
             blockerexist = true
             
             for other in barrierarray{
-                let dirX=Double(block.x - other.x)
-                let dirY=Double(block.y - other.y)
+                let dirX=Double(x - other.x)
+                let dirY=Double(y - other.y)
                 
                 let dir=sqrt(dirX*dirX+dirY*dirY)
-                if dir<Double(block.ballsize/2+other.ballsize/2){
+                if dir<Double(ballsize/2+other.ballsize/2){
                     blockerexist=false
                 }
             }
             
-            let dirXfromrock = Double(block.x - width/2)
-            let dirYfromrock = Double(block.y - height/10)
+            let dirXfromrock = Double(x - width/2)
+            let dirYfromrock = Double(y - height/8)
             let dirfromrock = sqrt(dirXfromrock * dirXfromrock + dirYfromrock * dirYfromrock)
             
-            if dirfromrock < Double(block.ballsize) + 20 {
+            if dirfromrock < Double(ballsize) + 20 {
                 blockerexist=false
             }
             
-            let dirXfromfin = Double(block.x - width/2)
-            let dirYfromfin = Double(block.y - 9*height/10)
+            let dirXfromfin = Double(x - width/2)
+            let dirYfromfin = Double(y - 9*height/10)
             let dirfromfin = sqrt(dirXfromfin * dirXfromfin + dirYfromfin * dirYfromfin)
             
-            if dirfromfin < Double(block.ballsize){
+            if dirfromfin < Double(ballsize){
                 blockerexist=false
             }
             
             if blockerexist{
                 barrierarray.append(block)
+                
+                block.setbarrier(ballsize , x:x , y:y )
+                
                 self.addChild(block)
                 
             }else{
@@ -305,80 +547,113 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             
             
         }
+        
+        i=0
+        
+        while i < sticknumber{
+            i++
+            
+            blockerexist=true
+            
+            let wood = stick()
+            
+            
+            let x = (CGFloat(arc4random()) % (width-110)) + (55)
+            let y = (CGFloat(arc4random()) % (height-300)) + (145)
+            
+            
+            let dirXfromrock = Double(x - width/2)
+            let dirYfromrock = Double(y - height/8)
+            let dirfromrock = sqrt(dirXfromrock * dirXfromrock + dirYfromrock * dirYfromrock)
+            
+            if dirfromrock < 50 {
+                blockerexist=false
+            }
+            
+            let dirXfromfin = Double(x - width/2)
+            let dirYfromfin = Double(y - 9*height/10)
+            let dirfromfin = sqrt(dirXfromfin * dirXfromfin + dirYfromfin * dirYfromfin)
+            
+            if dirfromfin < 50{
+                blockerexist=false
+            }
+            
+            
+            if blockerexist{
+                wood.setbarrier(0,x:x , y: y)
+                
+                self.addChild(wood)
+                stickarray.append(wood)
+                
+            }else{
+                sticknumber++
+            }
+            
+        }
+   
+        
     }
+    
+    //showb&s
     
     func didBeginContact(contact: SKPhysicsContact) {
         if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.block|BitMaskType.rock){
             print("crash")
             
             
-            let a = contact.bodyA.node
-            let b = contact.bodyB.node
-            showblock(a!.position)
+            let a = contact.bodyA.node as! blocker
+            //let b = contact.bodyB.node as! Rock
             
-            //disline(b!.position)
+            
+            //music.playhit(b)
+            
+            a.show()
+       
         }
+        
+        if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.stick|BitMaskType.rock){
+            
+            print("crash")
+            let a = contact.bodyA.node as! stick
+            //let b = contact.bodyB.node as! Rock
+            
+            
+            //music.playhit(b)
+            
+            a.show()
+        }
+        
         if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.edge|BitMaskType.rock){
             
-            let b = contact.bodyB.node
-            
-            //disline(b!.position)
             print("crashwall")
+            
+            let b = contact.bodyB.node as! Rock
+            
+            
+            //music.playhit(b)
+            
         }
-        if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.block)||(contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.edge){
+        
+        if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.block)||(contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.edge)||(contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.stick){
             
             peopleable=false
             
-            if restlife>0{
-                
-                restlife -= 1
-            }else{
-                die=true
-            }
             
+            showpeople()
             
             restart()
+            
+            music.playfailed()
+            
+            restlife--
             
             print("badcrash")
         }
         
-        if (contact.bodyA.categoryBitMask|contact.bodyB.categoryBitMask)==(BitMaskType.people|BitMaskType.block){
-            showpeople()
-        }
     }
     
-    var showbarrier:blocker!
+   
     
-    func showblock(pos:CGPoint){
-        
-        for barrier in barrierarray{
-            
-            if barrier.position == pos{
-                
-                    showbarrier = barrier
-            }
-        }
-        
-        if !showbarrier.isshow{
-            
-            showbarrier.show()
-            
-        }
-        
-        showbarrier.isshow = true
-        
-    }
-    
-    func disline(pos:CGPoint){
-        
-        for rock in rockarray{
-            if rock.position == pos{
-                rock.lineneed=false
-                
-                
-            }
-        }
-    }
     
     func showpeople(){
         
@@ -387,8 +662,13 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             barrier.show()
             
         }
+        for sti in stickarray{
+            sti.show()
+        }
         
     }
+    
+    //touch
     
     var beginlocation:CGPoint = CGPointMake(0, 0)
     var lastlocation:CGPoint = CGPointMake(0, 0)
@@ -412,7 +692,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
             if `throw` == Throw.rock{
                 if !disrock{
-                    rockarray.last!.position = CGPointMake(width/2, height/10)
+                    rockarray.last!.position = CGPointMake(width/2, height/8)
                     rockarray.last!.physicsBody?.velocity = CGVectorMake(0, 0)
                     //moveline()
                 }else{
@@ -426,9 +706,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             }
         }
         
-        if restrock==1{
-            buttonhid=true
-        }
         
     }
     
@@ -459,7 +736,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                 }
                 
                 
-            rockarray.last?.position = CGPointMake(width/2 - dirX, height/10 - dirY)
+            rockarray.last?.position = CGPointMake(width/2 - dirX, height/8 - dirY)
                
                
                 if pointarray.isEmpty{
@@ -468,7 +745,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                     
                      
                     let x = width/2 - dirX + CGFloat(i)*dirX*1.8
-                     let y = height/10 - dirY + CGFloat(i)*dirY*1.8
+                     let y = height/8 - dirY + CGFloat(i)*dirY*1.8
                     
                         let line = SKShapeNode()
                         
@@ -493,7 +770,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                     for i in 1...15{
                         
                         let x = width/2 - dirX + CGFloat(i)*dirX*1.8
-                        let y = height/10 - dirY + CGFloat(i)*dirY*1.8
+                        let y = height/8 - dirY + CGFloat(i)*dirY*1.8
                         
                         
                         pointarray[i-1].runAction(SKAction.moveTo(CGPointMake(x, y), duration: 0))
@@ -521,6 +798,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                         
             people.runAction(SKAction.moveByX(x, y: y, duration: 0))
             
+            if people.position.y<40{
+                people.position.y = 40
+            }
+            
             let dirX=Double(people.position.x - finish.position.x)
             let dirY=Double(people.position.y - finish.position.y)
             
@@ -528,6 +809,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             
             if dir<29{
                 restart()
+                
+                music.playnextlvl()
+                
+                
+                
             }
             
             }
@@ -552,7 +838,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                 
                 let dir=sqrt(dirX*dirX+dirY*dirY)
                 
-                if dir>30{
+                if dir>20{
                 rockcount++
                 rockarray.last!.moverock(beginlocation,end: endlocation)
             
@@ -600,6 +886,9 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         }
         pointarray=[]
         
+        if restrock==0{
+            buttonhid=true
+        }
         
     }
     
@@ -631,6 +920,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     
     func restart(){
         nextlevel=true
+        save()
     }
     
     override func update(currentTime: CFTimeInterval) {
@@ -650,17 +940,19 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
        
             if (people.position.x < 8) || (people.position.x > width - 8) || (people.position.y < 8) || (people.position.y > height - 28) {
             
-                if restlife>0{
-                    
-                    restlife -= 1
-                }else{
-                    die=true
-                }
                 
-                nextlevel=true
-               
+                restart()
+                
+                showpeople()
+                
+                restlife--
+                
+                music.playfailed()
+                
+                
+                
+                }
             }
-        }
         }
         
         people.physicsBody?.velocity = CGVectorMake(0, 0)
@@ -684,7 +976,29 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     
 }
 
-
+func nextdata(){
+    if again==true{
+        
+        again=false
+        
+        restlife = 3
+        
+        die = false
+        
+        level = 0
+        
+        restrock = 0
+    }
+    
+    level++
+    restrock += 3
+    
+    if level>bestlevel{
+        bestlevel = level
+    }
+  
+    
+}
 
 
 

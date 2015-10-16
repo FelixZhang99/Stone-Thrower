@@ -16,9 +16,9 @@ class People:SKShapeNode{
         
         self.path = CGPathCreateWithRoundedRect(CGRectMake(-16, -16, 32, 32), 16, 16, nil)
         
-        self.strokeColor = SKColor.grayColor()
-        self.fillColor = SKColor.grayColor()
-        self.position = CGPointMake(width/2, height/10)
+        self.strokeColor = SKColor.brownColor()
+        self.fillColor = SKColor.brownColor()
+        self.position = CGPointMake(width/2, height/8)
         
         
     }
@@ -30,7 +30,7 @@ class People:SKShapeNode{
         
         self.physicsBody?.dynamic = true
         
-        self.physicsBody?.contactTestBitMask = BitMaskType.block | BitMaskType.edge | BitMaskType.finish
+        self.physicsBody?.contactTestBitMask = BitMaskType.block | BitMaskType.edge | BitMaskType.finish | BitMaskType.stick
         
     }
     
