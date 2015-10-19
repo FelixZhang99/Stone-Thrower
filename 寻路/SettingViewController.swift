@@ -49,11 +49,11 @@ class SetViewController:UIViewController{
     
     func bg(){
         
-        let gameViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("sb")
+        //let gameViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("sb")
         
-        self.presentViewController(gameViewController, animated: false, completion: nil)
+        //self.presentViewController(gameViewController, animated: false, completion: nil)
         
-        
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     func change(){

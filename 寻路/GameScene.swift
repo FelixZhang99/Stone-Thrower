@@ -50,6 +50,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         setbottom()
         setright()
         
+        
+        if restrock>0{
         let rock = Rock()
         
         rock.setrock()
@@ -59,9 +61,14 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         rock.inarray = 0
         
         `throw` = Throw.rock
-        
+       
         self.addChild(rock)
-        
+        }else{
+            
+            newpeople()
+            
+            
+        }
         self.finish.setfinish()
         
         self.addChild(finish)
@@ -627,7 +634,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             
             print("crashwall")
             
-            let b = contact.bodyB.node as! Rock
+            //let b = contact.bodyB.node as! Rock
             
             
             //music.playhit(b)
@@ -736,7 +743,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                 }
                 
                 
-            rockarray.last?.position = CGPointMake(width/2 - dirX, height/8 - dirY)
+                rockarray.last?.position = CGPointMake(width/2 - dirX, height/8 - dirY)
                
                
                 if pointarray.isEmpty{
@@ -744,8 +751,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                     for i in 1...15 {
                     
                      
-                    let x = width/2 - dirX + CGFloat(i)*dirX*1.8
-                     let y = height/8 - dirY + CGFloat(i)*dirY*1.8
+                        let x = width/2 - dirX + CGFloat(i)*dirX*1.8
+                        let y = height/8 - dirY + CGFloat(i)*dirY*1.8
                     
                         let line = SKShapeNode()
                         
@@ -812,7 +819,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                 
                 music.playnextlvl()
                 
-                
+                showpeople()
                 
             }
             
@@ -853,11 +860,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
                         disrock=true
        
-                        var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("newrock"), userInfo: nil, repeats: false)
+                        _ = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("newrock"), userInfo: nil, repeats: false)
             
                     }else{
      
-                        var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("newpeople"), userInfo: nil, repeats: false)
+                        _ = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("newpeople"), userInfo: nil, repeats: false)
                         
                     
                         
@@ -908,11 +915,14 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
     
     func newpeople(){
         
+        
         people.setpeople()
         peopleable=true
         self.addChild(people)
-        
+
         `throw` = Throw.people
+        
+        
         
         buttonhid = true
         
@@ -928,7 +938,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
         
         for rock in rockarray{
             
-            if (rock.position.x < 8) || (rock.position.x > width - 8) || (rock.position.y < 8) || (rock.position.y > height - 28) || (rock.physicsBody?.velocity == CGVectorMake(0, 0)){
+            if (rock.position.x < 5) || (rock.position.x > width - 5) || (rock.position.y < 5) || (rock.position.y > height - 25) || (rock.physicsBody?.velocity == CGVectorMake(0, 0)){
                 
                 rock.disapear()
                 
@@ -955,6 +965,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
             }
         }
         
+        
+        
         people.physicsBody?.velocity = CGVectorMake(0, 0)
         
         if go{
@@ -965,6 +977,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate, SKSceneDelegate {
                         
             
             newpeople()
+            
             go=false
         }
         
@@ -997,7 +1010,7 @@ func nextdata(){
         bestlevel = level
     }
   
-    
+    save()
 }
 
 

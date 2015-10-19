@@ -41,10 +41,10 @@ class StoreViewController:UIViewController{
         self.view.addSubview(title)
         
         label = UILabel(frame: CGRectMake(width/4-50, height/3-20, 200, 35))
-        label.text = "五块石头换一条命"
+        label.text = "六块石头换一条命"
         self.view.addSubview(label)
         
-        for i in 1...5{
+        for i in 1...6{
             let n = arc4random()%3 + 1
             let image = UIImageView(image: UIImage(named: "rock\(n).png"))
             image.frame = CGRectMake(width/4 - 55 + CGFloat(i)*10, height/3+20, 20, 20)
@@ -53,11 +53,11 @@ class StoreViewController:UIViewController{
         }
         
         let image1 = UIImageView(image: UIImage(named: "to.png"))
-        image1.frame = CGRectMake(width/4 + 20, height/3+20, 25, 20)
+        image1.frame = CGRectMake(width/4 + 30, height/3+20, 25, 20)
         self.view.addSubview(image1)
         
         let image2 = UIImageView(image: UIImage(named: "life.tif"))
-        image2.frame = CGRectMake(width/4 + 50, height/3+20, 25, 20)
+        image2.frame = CGRectMake(width/4 + 60, height/3+20, 25, 20)
         self.view.addSubview(image2)
         
         buy = UIButton(type: UIButtonType.System)
@@ -71,18 +71,18 @@ class StoreViewController:UIViewController{
         
         buy.addTarget(self, action: Selector("change"), forControlEvents: UIControlEvents.TouchUpInside)
      
-        if restrock<5{
+        if restrock<6{
             buy.enabled = false
         }
     }
     
     func change(){
         
-        restrock -= 5
+        restrock -= 6
         
         restlife++
         
-        if restrock<5{
+        if restrock<6{
             buy.enabled = false
         }
         
@@ -90,14 +90,17 @@ class StoreViewController:UIViewController{
         
         rocklabel.text = "rock:\(restrock)"
         
+        save()
+        
     }
     
     func bg(){
         
-        let gameViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("sb")
+        //let gameViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("sb")
         
-        self.presentViewController(gameViewController, animated: false, completion: nil)
+        //self.presentViewController(gameViewController, animated: false, completion: nil)
         
+        self.dismissViewControllerAnimated(false, completion: nil)
         
     }
     func setlife(){

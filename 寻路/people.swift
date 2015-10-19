@@ -20,7 +20,7 @@ class People:SKShapeNode{
         self.fillColor = SKColor.brownColor()
         self.position = CGPointMake(width/2, height/8)
         
-        
+        self.alpha = 1
     }
     
     func peoplecrash(){

@@ -50,6 +50,8 @@ class GameViewController: UIViewController {
         
         button.enabled = false
         
+        nextdata()
+        
         self.viewDidLoad()
 
         
@@ -111,9 +113,6 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
             
-            
-            
-           
             scene.alpha = 1
             
             
@@ -124,12 +123,13 @@ class GameViewController: UIViewController {
         gobutton.setImage(UIImage(named: "buttom.tif"), forState: .Normal)
         gobutton.addTarget(self, action: Selector("gopeople"), forControlEvents: UIControlEvents.TouchUpInside)
         gobutton.alpha = 1
+        
         self.view.addSubview(gobutton)
         
         button.alpha = 0
         button.center = self.view.center
         button.enabled = false
-        button.setTitle("next", forState: .Normal)
+        button.setTitle("下一关", forState: .Normal)
         button.titleLabel?.textColor = UIColor.blackColor()
         
         pausebut.frame = CGRectMake(width - 60, 40 , 45, 30)
@@ -150,8 +150,9 @@ class GameViewController: UIViewController {
     }
     
     func gopeople(){
-        go=true
-        
+        if restrock>0{
+            go=true
+        }
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.gobutton.alpha = 0
                 }) { (finished:Bool) -> Void in
@@ -295,7 +296,7 @@ class GameViewController: UIViewController {
             
             if restlife==0{
                 
-                button.setTitle("again", forState: .Normal)
+                button.setTitle("重新开始", forState: .Normal)
                 
                 again=true
             }
@@ -308,7 +309,7 @@ class GameViewController: UIViewController {
                 }, completion: nil)
            
                
-                nextdata()
+               
                 
                 save()
                 

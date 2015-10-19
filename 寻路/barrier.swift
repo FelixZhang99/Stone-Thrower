@@ -58,7 +58,7 @@ class blocker:SKSpriteNode {
     }
     
     func show(){
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "showmore", userInfo: nil, repeats: false)
+        _ = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "showmore", userInfo: nil, repeats: false)
     }
     
     func showmore(){
@@ -66,7 +66,7 @@ class blocker:SKSpriteNode {
         if self.alpha<1{
             self.alpha += 0.05
             
-            var timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "showmore", userInfo: nil, repeats: false)
+            _ = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "showmore", userInfo: nil, repeats: false)
         
         }
         
@@ -105,7 +105,7 @@ class stick:blocker{
         
         self.alpha = 0
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "stopmove", userInfo: nil, repeats: false)
+        _ = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "stopmove", userInfo: nil, repeats: false)
         
     }
     
